@@ -40,11 +40,18 @@
 #define trU   0x00000700
 #define trV   0x00000006
 
+static uint32_t clamp255 (uint32_t in) {return in > 255 ? 255 : in;}
+
 /* RGB to YUV lookup table */
-static XBR_INLINE uint32_t rgb_to_yuv(const xbr_data *data, uint32_t c)
+static XBR_INLINE uint32_t rgb_to_yuv(uint32_t c)
 {
-    // Mask against MASK_RGB to discard the alpha channel
-    return data->rgbtoyuv[MASK_RGB & c];
+    const uint32_t r = (c & 0x00FF0000) >> 16;
+    const uint32_t g = (c & 0x0000FF00) >> 8;
+    const uint32_t b = (c & 0x000000FF) >> 0;
+    const uint32_t cb = clamp255(b - ((87 * r + 169 * g) >> 8) + 128);
+    const uint32_t cr = clamp255(r - g + 128);
+    const uint32_t y = clamp255(g + ((86 * cr + 29 * cb) >> 8));
+    return (y << 16) | (cb << 8) | (cr << 0);
 }
 
 /* Test if there is difference in color */
@@ -54,9 +61,9 @@ static XBR_INLINE int yuv_diff(uint32_t yuv1, uint32_t yuv2) {
             ( abs((yuv1 & Vmask) - (yuv2 & Vmask)) > trV ) );
 }
 
-static XBR_INLINE int Diff(const xbr_data *data, uint32_t c1, uint32_t c2)
+static XBR_INLINE int Diff(uint32_t c1, uint32_t c2)
 {
-    return yuv_diff(rgb_to_yuv(data, c1), rgb_to_yuv(data, c2));
+    return yuv_diff(rgb_to_yuv(c1), rgb_to_yuv(c2));
 }
 
 /* Interpolate functions */

@@ -51,15 +51,10 @@ extern "C" {
 #endif
 
 typedef struct {
-    uint32_t rgbtoyuv[1<<24];
-} xbr_data;
-
-typedef struct {
     const uint8_t *input;
     uint8_t *output;
     int inWidth, inHeight;
     int inPitch, outPitch;
-    const xbr_data *data;
 } xbr_params;
 
 XBR_EXPORT void xbr_filter_xbr2x(const xbr_params *ctx);
@@ -69,8 +64,6 @@ XBR_EXPORT void xbr_filter_xbr4x(const xbr_params *ctx);
 XBR_EXPORT void xbr_filter_hq2x(const xbr_params *ctx);
 XBR_EXPORT void xbr_filter_hq3x(const xbr_params *ctx);
 XBR_EXPORT void xbr_filter_hq4x(const xbr_params *ctx);
-
-XBR_EXPORT void xbr_init_data(xbr_data *data);
 
 
 #ifdef __cplusplus

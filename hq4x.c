@@ -161,7 +161,7 @@
 #define PIXEL33_81    Interp8(dp+dpL+dpL+dpL+3, w[5], w[6]);
 #define PIXEL33_82    Interp8(dp+dpL+dpL+dpL+3, w[5], w[8]);
 
-static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32_t drb, int Xres, int Yres, const xbr_data *data )
+static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32_t drb, int Xres, int Yres )
 {
     int  i, j, k;
     int  prevline, nextline;
@@ -224,7 +224,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
             pattern = 0;
             flag = 1;
 
-            yuv1 = rgb_to_yuv(data, w[5]);
+            yuv1 = rgb_to_yuv(w[5]);
 
             for (k=1; k<=9; k++)
             {
@@ -232,7 +232,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
 
                 if ( w[k] != w[5] )
                 {
-                    yuv2 = rgb_to_yuv(data, w[k]);
+                    yuv2 = rgb_to_yuv(w[k]);
                     if (yuv_diff(yuv1, yuv2))
                         pattern |= flag;
                 }
@@ -557,7 +557,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     {
                         PIXEL00_80
                         PIXEL01_10
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_10
                             PIXEL03_80
@@ -596,7 +596,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL13_10
                         PIXEL20_61
                         PIXEL21_30
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL22_30
                             PIXEL23_10
@@ -625,7 +625,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL11_30
                         PIXEL12_70
                         PIXEL13_60
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_10
                             PIXEL21_30
@@ -648,7 +648,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                 case 10:
                 case 138:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_80
                             PIXEL01_10
@@ -809,7 +809,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     {
                         PIXEL00_80
                         PIXEL01_10
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_0
                             PIXEL03_0
@@ -848,7 +848,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL20_61
                         PIXEL21_30
                         PIXEL22_0
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL23_0
                             PIXEL32_0
@@ -875,7 +875,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL11_30
                         PIXEL12_70
                         PIXEL13_60
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_0
                             PIXEL30_0
@@ -897,7 +897,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                 case 11:
                 case 139:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_0
                             PIXEL01_0
@@ -927,7 +927,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                 case 19:
                 case 51:
                     {
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL00_81
                             PIXEL01_31
@@ -962,7 +962,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     {
                         PIXEL00_80
                         PIXEL01_10
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_10
                             PIXEL03_80
@@ -996,7 +996,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL00_20
                         PIXEL01_60
                         PIXEL02_81
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL03_81
                             PIXEL13_31
@@ -1036,7 +1036,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL13_10
                         PIXEL20_82
                         PIXEL21_32
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL22_30
                             PIXEL23_10
@@ -1067,7 +1067,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL11_30
                         PIXEL12_70
                         PIXEL13_60
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_10
                             PIXEL21_30
@@ -1092,7 +1092,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                 case 73:
                 case 77:
                     {
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL00_82
                             PIXEL10_32
@@ -1125,7 +1125,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                 case 42:
                 case 170:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_80
                             PIXEL01_10
@@ -1158,7 +1158,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                 case 14:
                 case 142:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_80
                             PIXEL01_10
@@ -1351,7 +1351,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                 case 26:
                 case 31:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_0
                             PIXEL01_0
@@ -1363,7 +1363,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                             PIXEL01_50
                             PIXEL10_50
                         }
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_0
                             PIXEL03_0
@@ -1392,7 +1392,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     {
                         PIXEL00_80
                         PIXEL01_10
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_0
                             PIXEL03_0
@@ -1410,7 +1410,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL20_61
                         PIXEL21_30
                         PIXEL22_0
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL23_0
                             PIXEL32_0
@@ -1437,7 +1437,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL11_30
                         PIXEL12_30
                         PIXEL13_10
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_0
                             PIXEL30_0
@@ -1451,7 +1451,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         }
                         PIXEL21_0
                         PIXEL22_0
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL23_0
                             PIXEL32_0
@@ -1468,7 +1468,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                 case 74:
                 case 107:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_0
                             PIXEL01_0
@@ -1485,7 +1485,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL11_0
                         PIXEL12_30
                         PIXEL13_61
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_0
                             PIXEL30_0
@@ -1506,7 +1506,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 27:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_0
                             PIXEL01_0
@@ -1537,7 +1537,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     {
                         PIXEL00_80
                         PIXEL01_10
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_0
                             PIXEL03_0
@@ -1575,7 +1575,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL20_10
                         PIXEL21_30
                         PIXEL22_0
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL23_0
                             PIXEL32_0
@@ -1601,7 +1601,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL11_30
                         PIXEL12_30
                         PIXEL13_61
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_0
                             PIXEL30_0
@@ -1624,7 +1624,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     {
                         PIXEL00_80
                         PIXEL01_10
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_0
                             PIXEL03_0
@@ -1662,7 +1662,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL20_61
                         PIXEL21_30
                         PIXEL22_0
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL23_0
                             PIXEL32_0
@@ -1688,7 +1688,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL11_30
                         PIXEL12_30
                         PIXEL13_10
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_0
                             PIXEL30_0
@@ -1709,7 +1709,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 75:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_0
                             PIXEL01_0
@@ -1978,7 +1978,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 58:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_80
                             PIXEL01_10
@@ -1992,7 +1992,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                             PIXEL10_11
                             PIXEL11_0
                         }
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_10
                             PIXEL03_80
@@ -2020,7 +2020,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     {
                         PIXEL00_81
                         PIXEL01_31
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_10
                             PIXEL03_80
@@ -2038,7 +2038,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL11_31
                         PIXEL20_61
                         PIXEL21_30
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL22_30
                             PIXEL23_10
@@ -2066,7 +2066,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL11_30
                         PIXEL12_31
                         PIXEL13_31
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_10
                             PIXEL21_30
@@ -2080,7 +2080,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                             PIXEL30_20
                             PIXEL31_11
                         }
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL22_30
                             PIXEL23_10
@@ -2098,7 +2098,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 202:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_80
                             PIXEL01_10
@@ -2116,7 +2116,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL03_80
                         PIXEL12_30
                         PIXEL13_61
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_10
                             PIXEL21_30
@@ -2138,7 +2138,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 78:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_80
                             PIXEL01_10
@@ -2156,7 +2156,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL03_82
                         PIXEL12_32
                         PIXEL13_82
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_10
                             PIXEL21_30
@@ -2178,7 +2178,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 154:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_80
                             PIXEL01_10
@@ -2192,7 +2192,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                             PIXEL10_11
                             PIXEL11_0
                         }
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_10
                             PIXEL03_80
@@ -2220,7 +2220,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     {
                         PIXEL00_80
                         PIXEL01_10
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_10
                             PIXEL03_80
@@ -2238,7 +2238,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL11_30
                         PIXEL20_82
                         PIXEL21_32
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL22_30
                             PIXEL23_10
@@ -2266,7 +2266,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL11_32
                         PIXEL12_30
                         PIXEL13_10
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_10
                             PIXEL21_30
@@ -2280,7 +2280,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                             PIXEL30_20
                             PIXEL31_11
                         }
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL22_30
                             PIXEL23_10
@@ -2298,7 +2298,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 90:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_80
                             PIXEL01_10
@@ -2312,7 +2312,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                             PIXEL10_11
                             PIXEL11_0
                         }
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_10
                             PIXEL03_80
@@ -2326,7 +2326,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                             PIXEL12_0
                             PIXEL13_12
                         }
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_10
                             PIXEL21_30
@@ -2340,7 +2340,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                             PIXEL30_20
                             PIXEL31_11
                         }
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL22_30
                             PIXEL23_10
@@ -2359,7 +2359,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                 case 55:
                 case 23:
                     {
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL00_81
                             PIXEL01_31
@@ -2394,7 +2394,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     {
                         PIXEL00_80
                         PIXEL01_10
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_0
                             PIXEL03_0
@@ -2428,7 +2428,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL00_20
                         PIXEL01_60
                         PIXEL02_81
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL03_81
                             PIXEL13_31
@@ -2468,7 +2468,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL13_10
                         PIXEL20_82
                         PIXEL21_32
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL22_0
                             PIXEL23_0
@@ -2499,7 +2499,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL11_30
                         PIXEL12_70
                         PIXEL13_60
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_0
                             PIXEL21_0
@@ -2524,7 +2524,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                 case 109:
                 case 105:
                     {
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL00_82
                             PIXEL10_32
@@ -2557,7 +2557,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                 case 171:
                 case 43:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_0
                             PIXEL01_0
@@ -2590,7 +2590,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                 case 143:
                 case 15:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_0
                             PIXEL01_0
@@ -2630,7 +2630,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL11_30
                         PIXEL12_31
                         PIXEL13_31
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_0
                             PIXEL30_0
@@ -2651,7 +2651,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 203:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_0
                             PIXEL01_0
@@ -2682,7 +2682,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     {
                         PIXEL00_80
                         PIXEL01_10
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_0
                             PIXEL03_0
@@ -2720,7 +2720,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL20_61
                         PIXEL21_30
                         PIXEL22_0
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL23_0
                             PIXEL32_0
@@ -2740,7 +2740,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     {
                         PIXEL00_80
                         PIXEL01_10
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_0
                             PIXEL03_0
@@ -2778,7 +2778,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL20_10
                         PIXEL21_30
                         PIXEL22_0
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL23_0
                             PIXEL32_0
@@ -2804,7 +2804,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL11_30
                         PIXEL12_32
                         PIXEL13_82
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_0
                             PIXEL30_0
@@ -2825,7 +2825,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 155:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_0
                             PIXEL01_0
@@ -3022,7 +3022,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL11_30
                         PIXEL12_31
                         PIXEL13_31
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_10
                             PIXEL21_30
@@ -3037,7 +3037,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                             PIXEL31_11
                         }
                         PIXEL22_0
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL23_0
                             PIXEL32_0
@@ -3053,7 +3053,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 158:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_80
                             PIXEL01_10
@@ -3067,7 +3067,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                             PIXEL10_11
                             PIXEL11_0
                         }
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_0
                             PIXEL03_0
@@ -3092,7 +3092,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 234:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_80
                             PIXEL01_10
@@ -3110,7 +3110,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL03_80
                         PIXEL12_30
                         PIXEL13_61
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_0
                             PIXEL30_0
@@ -3133,7 +3133,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     {
                         PIXEL00_80
                         PIXEL01_10
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_10
                             PIXEL03_80
@@ -3152,7 +3152,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL20_82
                         PIXEL21_32
                         PIXEL22_0
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL23_0
                             PIXEL32_0
@@ -3170,7 +3170,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 59:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_0
                             PIXEL01_0
@@ -3182,7 +3182,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                             PIXEL01_50
                             PIXEL10_50
                         }
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_10
                             PIXEL03_80
@@ -3217,7 +3217,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL11_32
                         PIXEL12_30
                         PIXEL13_10
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_0
                             PIXEL30_0
@@ -3230,7 +3230,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                             PIXEL31_50
                         }
                         PIXEL21_0
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL22_30
                             PIXEL23_10
@@ -3250,7 +3250,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     {
                         PIXEL00_81
                         PIXEL01_31
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_0
                             PIXEL03_0
@@ -3267,7 +3267,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL12_0
                         PIXEL20_61
                         PIXEL21_30
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL22_30
                             PIXEL23_10
@@ -3287,7 +3287,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 79:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_0
                             PIXEL01_0
@@ -3304,7 +3304,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL11_0
                         PIXEL12_32
                         PIXEL13_82
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_10
                             PIXEL21_30
@@ -3326,7 +3326,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 122:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_80
                             PIXEL01_10
@@ -3340,7 +3340,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                             PIXEL10_11
                             PIXEL11_0
                         }
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_10
                             PIXEL03_80
@@ -3354,7 +3354,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                             PIXEL12_0
                             PIXEL13_12
                         }
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_0
                             PIXEL30_0
@@ -3367,7 +3367,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                             PIXEL31_50
                         }
                         PIXEL21_0
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL22_30
                             PIXEL23_10
@@ -3385,7 +3385,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 94:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_80
                             PIXEL01_10
@@ -3399,7 +3399,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                             PIXEL10_11
                             PIXEL11_0
                         }
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_0
                             PIXEL03_0
@@ -3412,7 +3412,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                             PIXEL13_50
                         }
                         PIXEL12_0
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_10
                             PIXEL21_30
@@ -3426,7 +3426,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                             PIXEL30_20
                             PIXEL31_11
                         }
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL22_30
                             PIXEL23_10
@@ -3444,7 +3444,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 218:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_80
                             PIXEL01_10
@@ -3458,7 +3458,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                             PIXEL10_11
                             PIXEL11_0
                         }
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_10
                             PIXEL03_80
@@ -3472,7 +3472,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                             PIXEL12_0
                             PIXEL13_12
                         }
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_10
                             PIXEL21_30
@@ -3487,7 +3487,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                             PIXEL31_11
                         }
                         PIXEL22_0
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL23_0
                             PIXEL32_0
@@ -3503,7 +3503,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 91:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_0
                             PIXEL01_0
@@ -3515,7 +3515,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                             PIXEL01_50
                             PIXEL10_50
                         }
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_10
                             PIXEL03_80
@@ -3530,7 +3530,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                             PIXEL13_12
                         }
                         PIXEL11_0
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_10
                             PIXEL21_30
@@ -3544,7 +3544,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                             PIXEL30_20
                             PIXEL31_11
                         }
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL22_30
                             PIXEL23_10
@@ -3642,7 +3642,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 186:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_80
                             PIXEL01_10
@@ -3656,7 +3656,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                             PIXEL10_11
                             PIXEL11_0
                         }
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_10
                             PIXEL03_80
@@ -3684,7 +3684,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     {
                         PIXEL00_81
                         PIXEL01_31
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_10
                             PIXEL03_80
@@ -3702,7 +3702,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL11_31
                         PIXEL20_82
                         PIXEL21_32
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL22_30
                             PIXEL23_10
@@ -3730,7 +3730,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL11_32
                         PIXEL12_31
                         PIXEL13_31
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_10
                             PIXEL21_30
@@ -3744,7 +3744,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                             PIXEL30_20
                             PIXEL31_11
                         }
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL22_30
                             PIXEL23_10
@@ -3762,7 +3762,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 206:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_80
                             PIXEL01_10
@@ -3780,7 +3780,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL03_82
                         PIXEL12_32
                         PIXEL13_82
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_10
                             PIXEL21_30
@@ -3811,7 +3811,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL11_32
                         PIXEL12_70
                         PIXEL13_60
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_10
                             PIXEL21_30
@@ -3834,7 +3834,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                 case 174:
                 case 46:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_80
                             PIXEL01_10
@@ -3867,7 +3867,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     {
                         PIXEL00_81
                         PIXEL01_31
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_10
                             PIXEL03_80
@@ -3906,7 +3906,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL13_31
                         PIXEL20_82
                         PIXEL21_32
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL22_30
                             PIXEL23_10
@@ -3968,7 +3968,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     {
                         PIXEL00_80
                         PIXEL01_10
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_0
                             PIXEL03_0
@@ -3983,7 +3983,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL10_10
                         PIXEL11_30
                         PIXEL12_0
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_0
                             PIXEL30_0
@@ -4004,7 +4004,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 219:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_0
                             PIXEL01_0
@@ -4024,7 +4024,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL20_10
                         PIXEL21_30
                         PIXEL22_0
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL23_0
                             PIXEL32_0
@@ -4042,7 +4042,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 125:
                     {
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL00_82
                             PIXEL10_32
@@ -4077,7 +4077,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL00_82
                         PIXEL01_82
                         PIXEL02_81
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL03_81
                             PIXEL13_31
@@ -4106,7 +4106,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 207:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_0
                             PIXEL01_0
@@ -4146,7 +4146,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL11_30
                         PIXEL12_32
                         PIXEL13_82
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_0
                             PIXEL21_0
@@ -4172,7 +4172,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     {
                         PIXEL00_80
                         PIXEL01_10
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_0
                             PIXEL03_0
@@ -4202,7 +4202,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 187:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_0
                             PIXEL01_0
@@ -4244,7 +4244,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL13_10
                         PIXEL20_82
                         PIXEL21_32
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL22_0
                             PIXEL23_0
@@ -4266,7 +4266,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 119:
                     {
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL00_81
                             PIXEL01_31
@@ -4311,7 +4311,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL21_0
                         PIXEL22_31
                         PIXEL23_81
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL30_0
                         }
@@ -4327,7 +4327,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                 case 175:
                 case 47:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_0
                         }
@@ -4358,7 +4358,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL00_81
                         PIXEL01_31
                         PIXEL02_0
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL03_0
                         }
@@ -4398,7 +4398,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL30_82
                         PIXEL31_32
                         PIXEL32_0
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL33_0
                         }
@@ -4418,7 +4418,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL11_30
                         PIXEL12_30
                         PIXEL13_10
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_0
                             PIXEL30_0
@@ -4432,7 +4432,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         }
                         PIXEL21_0
                         PIXEL22_0
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL23_0
                             PIXEL32_0
@@ -4448,7 +4448,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 123:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_0
                             PIXEL01_0
@@ -4465,7 +4465,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL11_0
                         PIXEL12_30
                         PIXEL13_10
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_0
                             PIXEL30_0
@@ -4486,7 +4486,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 95:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_0
                             PIXEL01_0
@@ -4498,7 +4498,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                             PIXEL01_50
                             PIXEL10_50
                         }
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_0
                             PIXEL03_0
@@ -4526,7 +4526,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     {
                         PIXEL00_80
                         PIXEL01_10
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_0
                             PIXEL03_0
@@ -4544,7 +4544,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL20_10
                         PIXEL21_30
                         PIXEL22_0
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL23_0
                             PIXEL32_0
@@ -4570,7 +4570,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL11_30
                         PIXEL12_31
                         PIXEL13_31
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_0
                             PIXEL30_0
@@ -4586,7 +4586,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL22_0
                         PIXEL23_0
                         PIXEL32_0
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL33_0
                         }
@@ -4609,7 +4609,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL20_0
                         PIXEL21_0
                         PIXEL22_0
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL23_0
                             PIXEL32_0
@@ -4621,7 +4621,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                             PIXEL32_50
                             PIXEL33_50
                         }
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL30_0
                         }
@@ -4634,7 +4634,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 235:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_0
                             PIXEL01_0
@@ -4655,7 +4655,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL21_0
                         PIXEL22_31
                         PIXEL23_81
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL30_0
                         }
@@ -4670,7 +4670,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 111:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_0
                         }
@@ -4685,7 +4685,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL11_0
                         PIXEL12_32
                         PIXEL13_82
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_0
                             PIXEL30_0
@@ -4706,7 +4706,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 63:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_0
                         }
@@ -4715,7 +4715,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                             PIXEL00_20
                         }
                         PIXEL01_0
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_0
                             PIXEL03_0
@@ -4742,7 +4742,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 159:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_0
                             PIXEL01_0
@@ -4755,7 +4755,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                             PIXEL10_50
                         }
                         PIXEL02_0
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL03_0
                         }
@@ -4781,7 +4781,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL00_81
                         PIXEL01_31
                         PIXEL02_0
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL03_0
                         }
@@ -4796,7 +4796,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL20_61
                         PIXEL21_30
                         PIXEL22_0
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL23_0
                             PIXEL32_0
@@ -4816,7 +4816,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     {
                         PIXEL00_80
                         PIXEL01_10
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_0
                             PIXEL03_0
@@ -4838,7 +4838,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL30_82
                         PIXEL31_32
                         PIXEL32_0
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL33_0
                         }
@@ -4852,7 +4852,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     {
                         PIXEL00_80
                         PIXEL01_10
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_0
                             PIXEL03_0
@@ -4867,7 +4867,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL10_10
                         PIXEL11_30
                         PIXEL12_0
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_0
                             PIXEL30_0
@@ -4883,7 +4883,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL22_0
                         PIXEL23_0
                         PIXEL32_0
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL33_0
                         }
@@ -4907,7 +4907,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL21_0
                         PIXEL22_0
                         PIXEL23_0
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL30_0
                         }
@@ -4917,7 +4917,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         }
                         PIXEL31_0
                         PIXEL32_0
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL33_0
                         }
@@ -4929,7 +4929,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 251:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_0
                             PIXEL01_0
@@ -4949,7 +4949,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL20_0
                         PIXEL21_0
                         PIXEL22_0
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL23_0
                             PIXEL32_0
@@ -4961,7 +4961,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                             PIXEL32_50
                             PIXEL33_50
                         }
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL30_0
                         }
@@ -4974,7 +4974,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 239:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_0
                         }
@@ -4993,7 +4993,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL21_0
                         PIXEL22_31
                         PIXEL23_81
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL30_0
                         }
@@ -5008,7 +5008,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 127:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_0
                         }
@@ -5017,7 +5017,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                             PIXEL00_20
                         }
                         PIXEL01_0
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL02_0
                             PIXEL03_0
@@ -5032,7 +5032,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL10_0
                         PIXEL11_0
                         PIXEL12_0
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL20_0
                             PIXEL30_0
@@ -5053,7 +5053,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 191:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_0
                         }
@@ -5063,7 +5063,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         }
                         PIXEL01_0
                         PIXEL02_0
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL03_0
                         }
@@ -5087,7 +5087,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 223:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_0
                             PIXEL01_0
@@ -5100,7 +5100,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                             PIXEL10_50
                         }
                         PIXEL02_0
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL03_0
                         }
@@ -5114,7 +5114,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL20_10
                         PIXEL21_30
                         PIXEL22_0
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL23_0
                             PIXEL32_0
@@ -5135,7 +5135,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL00_81
                         PIXEL01_31
                         PIXEL02_0
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL03_0
                         }
@@ -5154,7 +5154,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL30_82
                         PIXEL31_32
                         PIXEL32_0
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL33_0
                         }
@@ -5166,7 +5166,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                     }
                 case 255:
                     {
-                        if (Diff(data, w[4], w[2]))
+                        if (Diff(w[4], w[2]))
                         {
                             PIXEL00_0
                         }
@@ -5176,7 +5176,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         }
                         PIXEL01_0
                         PIXEL02_0
-                        if (Diff(data, w[2], w[6]))
+                        if (Diff(w[2], w[6]))
                         {
                             PIXEL03_0
                         }
@@ -5192,7 +5192,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         PIXEL21_0
                         PIXEL22_0
                         PIXEL23_0
-                        if (Diff(data, w[8], w[4]))
+                        if (Diff(w[8], w[4]))
                         {
                             PIXEL30_0
                         }
@@ -5202,7 +5202,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
                         }
                         PIXEL31_0
                         PIXEL32_0
-                        if (Diff(data, w[6], w[8]))
+                        if (Diff(w[6], w[8]))
                         {
                             PIXEL33_0
                         }
@@ -5226,7 +5226,7 @@ static void hq4x_32_rb( const uint32_t * sp, uint32_t srb, uint32_t * dp, uint32
 }
 
 void xbr_filter_hq4x(const xbr_params *ctx) {
-	hq4x_32_rb((const uint32_t *)ctx->input, ctx->inPitch, (uint32_t *)ctx->output, ctx->outPitch, ctx->inWidth, ctx->inHeight, ctx->data);
+	hq4x_32_rb((const uint32_t *)ctx->input, ctx->inPitch, (uint32_t *)ctx->output, ctx->outPitch, ctx->inWidth, ctx->inHeight);
 }
 
 

@@ -16,7 +16,6 @@ int main(int argc, char **argv) {
 	int width, height;
 	int scaleType, scaleFactor;
 	int i;
-	xbr_data *xbrData;
 	xbr_params xbrParams;
 
 	if (argc != 4) {
@@ -98,10 +97,6 @@ int main(int argc, char **argv) {
 	/* CONVERT IT! */
 	outBuffer = malloc(width * scaleFactor * height * scaleFactor * 4);
 
-	xbrData = malloc(sizeof(xbr_data));
-	xbr_init_data(xbrData);
-
-	xbrParams.data = xbrData;
 	xbrParams.input = inBuffer;
 	xbrParams.output = outBuffer;
 	xbrParams.inWidth = width;

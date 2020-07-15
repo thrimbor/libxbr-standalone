@@ -32,6 +32,7 @@
 
 #define XBR_INTERNAL
 #include "filters.h"
+#include "internal_hqx_common.h"
 #include <stdlib.h>
 
 #define LB_MASK       0x00FEFEFE
@@ -39,14 +40,14 @@
 #define GREEN_MASK    0x0000FF00
 #define PART_MASK     0x00FF00FF
 
-static uint32_t pixel_diff(uint32_t x, uint32_t y, const uint32_t *r2y)
+static uint32_t pixel_diff(uint32_t x, uint32_t y)
 {
 #define YMASK 0xff0000
 #define UMASK 0x00ff00
 #define VMASK 0x0000ff
 
-    uint32_t yuv1 = r2y[x & 0xffffff];
-    uint32_t yuv2 = r2y[y & 0xffffff];
+    uint32_t yuv1 = rgb_to_yuv(x);
+    uint32_t yuv2 = rgb_to_yuv(y);
 
     return (abs((x >> 24) - (y >> 24))) +
            (abs((yuv1 & YMASK) - (yuv2 & YMASK)) >> 16) +
@@ -65,7 +66,7 @@ static uint32_t pixel_diff(uint32_t x, uint32_t y, const uint32_t *r2y)
 
 
 
-#define df(A, B) pixel_diff(A, B, r2y)
+#define df(A, B) pixel_diff(A, B)
 #define eq(A, B) (df(A, B) < 155)
 
 #define FILT2(PE, PI, PH, PF, PG, PC, PD, PB, PA, G5, C4, G0, D0, C1, B1, F4, I4, H5, I5, A0, A1,   \
@@ -193,7 +194,6 @@ static uint32_t pixel_diff(uint32_t x, uint32_t y, const uint32_t *r2y)
 static XBR_INLINE void xbr_filter(const xbr_params *params, int n)
 {
     int x, y;
-    const uint32_t *r2y = params->data->rgbtoyuv;
     const int nl = params->outPitch >> 2;
     const int nl1 = nl + nl;
     const int nl2 = nl1 + nl;
@@ -301,37 +301,3 @@ void xbr_filter_xbr##size##x(const xbr_params *params) \
 XBR_FUNC(2)
 XBR_FUNC(3)
 XBR_FUNC(4)
-
-
-static XBR_INLINE int _max(int a, int b)
-{
-	return (a > b) ? a : b;
-}
-
-static XBR_INLINE int _min(int a, int b)
-{
-	return (a < b) ? a : b;
-}
-
-
-void xbr_init_data(xbr_data *data)
-{
-    uint32_t c;
-    int bg, rg, g;
-
-    for (bg = -255; bg < 256; bg++) {
-        for (rg = -255; rg < 256; rg++) {
-            const uint32_t u = (uint32_t)((-169*rg + 500*bg)/1000) + 128;
-            const uint32_t v = (uint32_t)(( 500*rg -  81*bg)/1000) + 128;
-            int startg = _max(-bg, _max(-rg, 0));
-            int endg = _min(255-bg, _min(255-rg, 255));
-            uint32_t y = (uint32_t)(( 299*rg + 1000*startg + 114*bg)/1000);
-            c = bg + (rg<<16) + 0x010101 * startg;
-            for (g = startg; g <= endg; g++) {
-                data->rgbtoyuv[c] = ((y++) << 16) + (u << 8) + v;
-                c+= 0x010101;
-            }
-        }
-    }
-}
-
