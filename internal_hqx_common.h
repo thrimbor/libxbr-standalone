@@ -40,18 +40,23 @@
 #define trU   0x00000700
 #define trV   0x00000006
 
-static uint32_t clamp255 (uint32_t in) {return in > 255 ? 255 : in;}
+static XBR_INLINE int32_t clamp_yuv (int32_t c)
+{
+    if (c < 0) return 0;
+    if (c > 255) return 255;
+    return c;
+}
 
 /* RGB to YUV lookup table */
 static XBR_INLINE uint32_t rgb_to_yuv(uint32_t c)
 {
-    const uint32_t r = (c & 0x00FF0000) >> 16;
-    const uint32_t g = (c & 0x0000FF00) >> 8;
-    const uint32_t b = (c & 0x000000FF) >> 0;
-    const uint32_t cb = clamp255(b - ((87 * r + 169 * g) >> 8) + 128);
-    const uint32_t cr = clamp255(r - g + 128);
-    const uint32_t y = clamp255(g + ((86 * cr + 29 * cb) >> 8));
-    return (y << 16) | (cb << 8) | (cr << 0);
+    const int32_t r = (c & 0x00FF0000) >> 16;
+    const int32_t g = (c & 0x0000FF00) >> 8;
+    const int32_t b = (c & 0x000000FF) >> 0;
+    const int32_t y = clamp_yuv((9798 * r + 19235 * g + 3736 * b) / 32768);
+    const int32_t u = clamp_yuv(((-4784 * r - 9437 * g + 4221 * b) / 32768) + 128);
+    const int32_t v = clamp_yuv(((20218 * r - 16941 * g - 3277 * b) / 32768) + 128);
+    return (uint32_t)(y << 16) | (u << 8) | (v << 0);
 }
 
 /* Test if there is difference in color */
